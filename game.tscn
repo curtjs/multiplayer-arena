@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=4 uid="uid://c5agow2cecj8v"]
+
+[ext_resource type="Texture2D" uid="uid://b78xw2o4ms3uk" path="res://tileset.png" id="1_0mmdn"]
+[ext_resource type="PackedScene" uid="uid://ccp7a5trw734p" path="res://player/player.tscn" id="2_kd8bb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwohc"]
+texture = ExtResource("1_0mmdn")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_66pxm"]
+tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_wwohc")
+
+[node name="Game" type="Node"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAkAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAYAAAAAAAAAAAAKAAYAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAcAAAAAAAAAAAAPAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAQAAAAAAAAAAAARAAQAAAAAAAAAAAARAAUAAAAAAAAAAAASAAUAAAAAAAAAAAASAAQAAAAAAAAAAAATAAQAAAAAAAAAAAAZAAUAAAAAAAAAAAAaAAUAAAAAAAAAAAAbAAUAAAAAAAAAAAAcAAUAAAAAAAAAAAAdAAUAAAAAAAAAAAAeAAUAAAAAAAAAAAAdAAYAAAAAAAAAAAAcAAYAAAAAAAAAAAAbAAYAAAAAAAAAAAAaAAYAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_66pxm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(125, 40)
+zoom = Vector2(4, 4)
+
+[node name="Player" parent="." instance=ExtResource("2_kd8bb")]
+position = Vector2(29, 50)
