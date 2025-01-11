@@ -12,9 +12,14 @@ https://www.youtube.com/watch?v=CS5qU7eOwb8
 https://github.com/curtjs/multiplayer-arena/tree/part1
 
 ## Part 2 | Spawning & Synchronizing Players, Local Multiplayer
-Coming Soon!
+Goes over how to add multiplayer to the game. Can be applied to basically any platformer
+#### Video
+https://youtu.be/fEkUc2Nrhx8
+#### Source
+https://github.com/curtjs/multiplayer-arena/tree/part2
 
 ## Part 3 | Setting up the Gun & Projectiles
+Coming Soon!
 
 ## Part 4 | Setting up NoRay for Global Multiplayer
 Coming Soon!
