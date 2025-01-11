@@ -14,5 +14,7 @@ https://github.com/curtjs/multiplayer-arena/tree/part1
 ## Part 2 | Spawning & Synchronizing Players, Local Multiplayer
 Coming Soon!
 
-## Part 3 | Setting up NoRay for Global Multiplayer
+## Part 3 | Setting up the Gun & Projectiles
+
+## Part 4 | Setting up NoRay for Global Multiplayer
 Coming Soon!
