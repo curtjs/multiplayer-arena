@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccp7a5trw734p"]
+[gd_scene load_steps=6 format=3 uid="uid://ccp7a5trw734p"]
 
 [ext_resource type="Texture2D" uid="uid://by2qvlirfs6xr" path="res://player/player.png" id="1_ie8tf"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_uo8rl"]
+[ext_resource type="Texture2D" uid="uid://dsbqfqmi6bnaf" path="res://player/gun.png" id="3_y25t2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ive5f"]
 size = Vector2(8, 8)
@@ -10,6 +11,12 @@ size = Vector2(8, 8)
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("GunContainer:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("GunContainer/GunSprite:flip_v")
+properties/2/spawn = true
+properties/2/replication_mode = 2
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -19,8 +26,16 @@ script = ExtResource("1_uo8rl")
 shape = SubResource("RectangleShape2D_ive5f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 1, 1)
 texture = ExtResource("1_ie8tf")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_si0n2")
+
+[node name="GunContainer" type="Node2D" parent="."]
+
+[node name="GunSprite" type="Sprite2D" parent="GunContainer"]
+position = Vector2(10, 0)
+texture = ExtResource("3_y25t2")
+
+[node name="Muzzle" type="Marker2D" parent="GunContainer/GunSprite"]
+position = Vector2(3, 0)
