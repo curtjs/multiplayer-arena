@@ -19,7 +19,11 @@ https://youtu.be/fEkUc2Nrhx8
 https://github.com/curtjs/multiplayer-arena/tree/part2
 
 ## Part 3 | Setting up the Gun & Projectiles
-Coming Soon!
+Goes over how to add spawn points, a gun, and synchronizing bullets over the network
+#### Video
+https://www.youtube.com/watch?v=EvKteWXcnQU
+#### Source
+https://github.com/curtjs/multiplayer-arena/tree/part3
 
 ## Part 4 | Setting up NoRay for Global Multiplayer
 Coming Soon!
