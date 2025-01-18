@@ -15,6 +15,12 @@ run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Multiplayer="*res://multiplayer.gd"
+Noray="*res://addons/netfox.noray/noray.gd"
+PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
+
 [display]
 
 window/stretch/mode="viewport"
@@ -22,6 +28,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="Multiplayer Arena Shooter"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
 
 [input]
 

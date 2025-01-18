@@ -70,13 +70,30 @@ text = "Multiplayer Arena Shooter"
 layout_mode = 2
 text = "Host"
 
+[node name="CopyOID" type="Button" parent="UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+text = "Copy OID"
+
+[node name="HSeparator" type="HSeparator" parent="UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OIDInput" type="LineEdit" parent="UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Host OID"
+
 [node name="Join" type="Button" parent="UI/Multiplayer/VBoxContainer"]
 layout_mode = 2
 text = "Join"
+
+[node name="OID" type="Label" parent="UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+text = "Loading..."
+horizontal_alignment = 1
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="UI/Multiplayer/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="UI/Multiplayer/VBoxContainer/CopyOID" to="." method="_on_copy_oid_pressed"]
 [connection signal="pressed" from="UI/Multiplayer/VBoxContainer/Join" to="." method="_on_join_pressed"]
