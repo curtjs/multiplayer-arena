@@ -1,0 +1,154 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn8ql05rxmfpo"]
+
+[ext_resource type="Script" uid="uid://cljcc1bgos7p5" path="res://networking/room_selector.gd" id="1_0jdop"]
+
+[node name="RoomSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0jdop")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Rooms" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RoomNames" type="VBoxContainer" parent="Margin/Rooms"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Rooms/RoomNames"]
+layout_mode = 2
+text = "Name"
+
+[node name="Gap" type="Control" parent="Margin/Rooms"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RoomPlayers" type="VBoxContainer" parent="Margin/Rooms"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Margin/Rooms/RoomPlayers"]
+layout_mode = 2
+text = "Players"
+
+[node name="Gap2" type="Control" parent="Margin/Rooms"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RoomIds" type="VBoxContainer" parent="Margin/Rooms"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Rooms/RoomIds"]
+layout_mode = 2
+text = "Room ID"
+
+[node name="Gap3" type="Control" parent="Margin/Rooms"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="JoinBtns" type="VBoxContainer" parent="Margin/Rooms"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Rooms/JoinBtns"]
+layout_mode = 2
+text = "Join Room"
+
+[node name="Controls" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Create" type="Button" parent="Margin/Controls/HBoxContainer"]
+layout_mode = 2
+text = "Create Room"
+
+[node name="RoomNameIn" type="LineEdit" parent="Margin/Controls/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Name (optional)"
+
+[node name="RoomPassIn" type="LineEdit" parent="Margin/Controls/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Password (optional)"
+
+[node name="Refresh" type="Button" parent="Margin/Controls"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Refresh Rooms"
+
+[node name="PasswordPopup" type="PopupPanel" parent="."]
+unique_name_in_owner = true
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(320, 180)
+
+[node name="Password" type="Control" parent="PasswordPopup"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 316.0
+offset_bottom = 176.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PasswordPopup/Password"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.5
+offset_top = -64.0
+offset_right = 119.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PasswordPopup/Password/VBoxContainer"]
+layout_mode = 2
+text = "This room requires a password"
+
+[node name="JoinRoomPass" type="LineEdit" parent="PasswordPopup/Password/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Enter password here"
+
+[node name="SubmitPass" type="Button" parent="PasswordPopup/Password/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Join Room"
+
+[node name="CancelJoin" type="Button" parent="PasswordPopup/Password/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="pressed" from="Margin/Controls/HBoxContainer/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="Margin/Controls/Refresh" to="." method="_on_refresh_pressed"]
+[connection signal="pressed" from="PasswordPopup/Password/VBoxContainer/SubmitPass" to="." method="_on_submit_pass_pressed"]
+[connection signal="pressed" from="PasswordPopup/Password/VBoxContainer/CancelJoin" to="." method="_on_cancel_join_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://c5agow2cecj8v"]
+[gd_scene load_steps=6 format=4 uid="uid://c5agow2cecj8v"]
 
 [ext_resource type="Texture2D" uid="uid://b78xw2o4ms3uk" path="res://tileset.png" id="1_0mmdn"]
-[ext_resource type="Script" path="res://game.gd" id="1_qdjc2"]
+[ext_resource type="Script" uid="uid://ciqrowf4olfv1" path="res://game.gd" id="1_qdjc2"]
+[ext_resource type="PackedScene" uid="uid://dn8ql05rxmfpo" path="res://networking/room_selector.tscn" id="3_feb5d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwohc"]
 texture = ExtResource("1_0mmdn")
@@ -19,6 +20,7 @@ sources/0 = SubResource("TileSetAtlasSource_wwohc")
 script = ExtResource("1_qdjc2")
 
 [node name="Level" type="TileMapLayer" parent="."]
+visible = false
 tile_map_data = PackedByteArray("AAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAkAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAYAAAAAAAAAAAAKAAYAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAcAAAAAAAAAAAAPAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAQAAAAAAAAAAAARAAQAAAAAAAAAAAARAAUAAAAAAAAAAAASAAUAAAAAAAAAAAASAAQAAAAAAAAAAAATAAQAAAAAAAAAAAAZAAUAAAAAAAAAAAAaAAUAAAAAAAAAAAAbAAUAAAAAAAAAAAAcAAUAAAAAAAAAAAAdAAUAAAAAAAAAAAAeAAUAAAAAAAAAAAAdAAYAAAAAAAAAAAAcAAYAAAAAAAAAAAAbAAYAAAAAAAAAAAAaAAYAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_66pxm")
 
@@ -40,60 +42,8 @@ zoom = Vector2(4, 4)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Multiplayer" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Multiplayer"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -102.0
-offset_top = -46.5
-offset_right = 102.0
-offset_bottom = 46.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Title" type="Label" parent="UI/Multiplayer/VBoxContainer"]
-layout_mode = 2
-text = "Multiplayer Arena Shooter"
-
-[node name="Host" type="Button" parent="UI/Multiplayer/VBoxContainer"]
-layout_mode = 2
-text = "Host"
-
-[node name="CopyOID" type="Button" parent="UI/Multiplayer/VBoxContainer"]
-layout_mode = 2
-text = "Copy OID"
-
-[node name="HSeparator" type="HSeparator" parent="UI/Multiplayer/VBoxContainer"]
-layout_mode = 2
-
-[node name="OIDInput" type="LineEdit" parent="UI/Multiplayer/VBoxContainer"]
-layout_mode = 2
-placeholder_text = "Host OID"
-
-[node name="Join" type="Button" parent="UI/Multiplayer/VBoxContainer"]
-layout_mode = 2
-text = "Join"
-
-[node name="OID" type="Label" parent="UI/Multiplayer/VBoxContainer"]
-layout_mode = 2
-text = "Loading..."
-horizontal_alignment = 1
+[node name="RoomSelector" parent="UI" instance=ExtResource("3_feb5d")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://player/player.tscn")
+_spawnable_scenes = PackedStringArray("uid://ccp7a5trw734p")
 spawn_path = NodePath("..")
-
-[connection signal="pressed" from="UI/Multiplayer/VBoxContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="UI/Multiplayer/VBoxContainer/CopyOID" to="." method="_on_copy_oid_pressed"]
-[connection signal="pressed" from="UI/Multiplayer/VBoxContainer/Join" to="." method="_on_join_pressed"]

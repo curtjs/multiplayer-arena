@@ -12,14 +12,13 @@ config_version=5
 
 config/name="Multiplayer Arena Shooter"
 run/main_scene="res://game.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Multiplayer="*res://multiplayer.gd"
-Noray="*res://addons/netfox.noray/noray.gd"
-PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
+Multiplayer="*res://networking/multiplayer.gd"
+NodeTunnel="*res://addons/nodetunnel/nodetunnel.gd"
 
 [display]
 
@@ -31,7 +30,7 @@ project/assembly_name="Multiplayer Arena Shooter"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
+enabled=PackedStringArray("res://addons/nodetunnel/plugin.cfg")
 
 [input]
 

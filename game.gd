@@ -1,9 +1,8 @@
 class_name Game
 extends Node
 
-@onready var multiplayer_ui = $UI/Multiplayer
-@onready var oid_lbl = $UI/Multiplayer/VBoxContainer/OID
-@onready var oid_input = $UI/Multiplayer/VBoxContainer/OIDInput
+@onready var multiplayer_ui := $UI/RoomSelector
+@onready var level = $Level
 
 const PLAYER = preload("res://player/player.tscn")
 
@@ -11,14 +10,17 @@ var peer = ENetMultiplayerPeer.new()
 var players: Array[Player] = []
 
 func _ready():
+	Multiplayer.nodetunnel.room_connected.connect(setup_game)
 	$MultiplayerSpawner.spawn_function = add_player
-	
-	await Multiplayer.noray_connected
-	oid_lbl.text = Noray.oid
 
-func _on_host_pressed():
-	Multiplayer.host()
+func setup_game():
+	if multiplayer.is_server():
+		_server_setup()
 	
+	multiplayer_ui.hide()
+	level.show()
+
+func _server_setup():
 	multiplayer.peer_connected.connect(
 		func(pid):
 			print("Peer " + str(pid) + " has joined the game!")
@@ -26,12 +28,6 @@ func _on_host_pressed():
 	)
 	
 	$MultiplayerSpawner.spawn(multiplayer.get_unique_id())
-	multiplayer_ui.hide()
-
-func _on_join_pressed():
-	Multiplayer.join(oid_input.text)
-	
-	multiplayer_ui.hide()
 
 func add_player(pid):
 	var player = PLAYER.instantiate()
@@ -43,6 +39,3 @@ func add_player(pid):
 
 func get_random_spawnpoint():
 	return $Level.get_children().pick_random().global_position
-
-func _on_copy_oid_pressed():
-	DisplayServer.clipboard_set(Noray.oid)
